@@ -22,18 +22,18 @@ function App() {
   })
 
   const calculatePrice = () => {
-    let basePrice = 15000
+    let basePrice = 250000
     
     if (channels === '2') {
-      basePrice = 25000
+      basePrice = 350000
     } else if (channels === '3') {
-      basePrice = 45000
+      basePrice = 450000
     }
     
     if (requests === '5000') {
-      basePrice += 10000
+      basePrice += 100000
     } else if (requests === 'unlimited') {
-      basePrice += 25000
+      basePrice += 250000
     }
     
     return basePrice.toLocaleString('ru-RU')
@@ -53,12 +53,10 @@ function App() {
     e.preventDefault()
     
     try {
-      const response = await fetch('/api/leads', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbw_cqKho2eTCBqVxO7C_Shl0eyH1rSwg5mA8LDgUbYUhDH-x5wLiKypO7lDT_bzbPygvg/exec', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' }
       })
       
       const result = await response.json()
@@ -355,7 +353,7 @@ function App() {
                 </div>
                 <div className="text-center">
                   <p className="text-2xl font-semibold text-blue-600">
-                    Ориентировочная стоимость: от {calculatePrice()} ₽
+                    Ориентировочная стоимость: от {calculatePrice()} ₸
                   </p>
                 </div>
                 <p className="text-sm text-gray-500 text-center">
@@ -511,4 +509,6 @@ function App() {
 }
 
 export default App
+
+var sheet = SpreadsheetApp.openById('1eKdrlFCor9-e3f4uOuWQwLrr2xZ2PU-2n7oYlj6HdD8').getSheetByName('Лист1');
 
