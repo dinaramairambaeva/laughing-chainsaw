@@ -240,7 +240,7 @@ function App() {
               <img 
                 src={aiInterface} 
                 alt="Интерфейс ИИ-ассистента"
-                className="w-full h-auto rounded-2xl shadow-xl"
+                className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full h-auto mx-auto rounded-2xl shadow-xl block"
               />
             </div>
           </div>
