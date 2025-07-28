@@ -192,8 +192,8 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 text-white py-20 lg:py-32">
-        <div className="container mx-auto px-4">
+      <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 text-white py-20 lg:py-32 w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-fade-in-up">
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
@@ -216,7 +216,7 @@ function App() {
               <img 
                 src={automationHero} 
                 alt="ИИ-ассистент для бизнеса"
-                className="w-full h-auto rounded-2xl shadow-2xl"
+                className="w-full max-w-full h-auto rounded-2xl shadow-2xl"
               />
             </div>
           </div>
@@ -224,8 +224,8 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gray-50 w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <h2 className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-16">О нас</h2>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -240,7 +240,8 @@ function App() {
               <img 
                 src={aiInterface} 
                 alt="Интерфейс ИИ-ассистента"
-                className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full h-auto mx-auto rounded-2xl shadow-xl block"
+                className="max-w-full w-full h-auto mx-auto rounded-2xl shadow-xl block object-contain"
+                style={{maxHeight: '420px'}}
               />
             </div>
           </div>
@@ -248,12 +249,15 @@ function App() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-white w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <h2 className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-16">Преимущества</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 hover:border-blue-500">
+              <Card
+                key={index}
+                className="p-4 sm:p-6 md:p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 hover:border-blue-500 w-full max-w-xl mx-auto"
+              >
                 <CardContent className="text-center space-y-4">
                   <div className="flex justify-center mb-4">
                     {benefit.icon}
@@ -280,16 +284,16 @@ function App() {
       </section>
 
       {/* Packages Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gray-50 w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <h2 className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-8">Пакеты услуг</h2>
           <p className="text-lg lg:text-xl text-center text-gray-600 mb-16 max-w-4xl mx-auto">
             Мы предлагаем гибкие пакеты услуг, которые можно адаптировать под уникальные потребности вашего бизнеса.
           </p>
           
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {packages.map((pkg, index) => (
-              <Card key={index} className={`p-8 relative ${pkg.popular ? 'border-4 border-blue-500 scale-105' : 'hover:shadow-xl'} transition-all duration-300`}>
+              <Card key={index} className={`p-8 relative w-full max-w-xl mx-auto ${pkg.popular ? 'border-4 border-blue-500 scale-105' : 'hover:shadow-xl'} transition-all duration-300`}>
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-red-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
@@ -315,8 +319,8 @@ function App() {
           </div>
 
           {/* Calculator */}
-          <div className="max-w-2xl mx-auto">
-            <Card className="p-8">
+          <div className="max-w-2xl mx-auto w-full">
+            <Card className="p-8 w-full max-w-full">
               <CardContent className="space-y-6">
                 <h3 className="text-2xl font-semibold text-center text-gray-800 mb-6">
                   Калькулятор стоимости
@@ -364,12 +368,12 @@ function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-white w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <h2 className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-16">Отзывы клиентов</h2>
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <Card key={index} className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 w-full max-w-xl mx-auto">
                 <CardContent className="space-y-6">
                   <p className="text-gray-600 italic leading-relaxed">
                     "{testimonial.content}"
@@ -386,12 +390,12 @@ function App() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gray-50 w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <h2 className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-16">Частые вопросы</h2>
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-4xl mx-auto space-y-4 w-full">
             {faqItems.map((item, index) => (
-              <Card key={index} className="overflow-hidden">
+              <Card key={index} className="overflow-hidden w-full max-w-full">
                 <CardContent className="p-0">
                   <button
                     onClick={() => toggleAccordion(index)}
@@ -417,15 +421,15 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section id="contact-form" className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+      <section id="contact-form" className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 text-white w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
+          <div className="max-w-4xl mx-auto text-center w-full">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">Готовы автоматизировать свой бизнес?</h2>
             <p className="text-lg lg:text-xl mb-12 opacity-90">
               Оставьте заявку прямо сейчас, и наши специалисты свяжутся с вами для бесплатной консультации и подбора оптимального решения.
             </p>
             
-            <Card className="max-w-2xl mx-auto">
+            <Card className="max-w-2xl mx-auto w-full">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -488,8 +492,8 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto px-4">
+      <footer className="bg-gray-800 text-white py-12 w-full">
+        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl font-bold mb-2">Вечный ИИ</h3>
