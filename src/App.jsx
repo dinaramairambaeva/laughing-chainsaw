@@ -8,6 +8,9 @@ import { Clock, DollarSign, Target, TrendingUp, Plus, Minus } from 'lucide-react
 import automationHero from './assets/automation_hero.jpg'
 import aiInterface from './assets/ai_interface_russian.jpg'
 import './App.css'
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 function App() {
   const [channels, setChannels] = useState('1')
