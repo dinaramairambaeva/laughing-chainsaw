@@ -1,3 +1,4 @@
+import ClientCalc from './components/ui/ClientCalc.jsx'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -8,9 +9,6 @@ import { Clock, DollarSign, Target, TrendingUp, Plus, Minus } from 'lucide-react
 import automationHero from './assets/automation_hero.jpg'
 import aiInterface from './assets/ai_interface_russian.jpg'
 import './App.css'
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
 
 function App() {
   const [channels, setChannels] = useState('1')
@@ -112,54 +110,21 @@ function App() {
     }
   ]
 
-  const packages = [
-    {
-      title: "Базовый пакет «Старт»",
-      features: [
-        "ИИ-ассистент для одного канала (например, WhatsApp или Telegram)",
-        "Обработка до 1000 запросов в месяц",
-        "Базовая интеграция с CRM (по запросу)",
-        "Стандартная поддержка"
-      ]
-    },
-    {
-      title: "Оптимальный пакет «Бизнес»",
-      popular: true,
-      features: [
-        "ИИ-ассистент для двух каналов",
-        "Обработка до 5000 запросов в месяц",
-        "Расширенная интеграция с CRM и Google Sheets",
-        "Приоритетная поддержка",
-        "Возможность обучения ИИ на ваших данных"
-      ]
-    },
-    {
-      title: "Премиум пакет «Профи»",
-      features: [
-        "ИИ-ассистент для всех ваших каналов",
-        "Безлимитная обработка запросов",
-        "Полная кастомизация и разработка уникальных функций",
-        "Персональный менеджер и круглосуточная поддержка",
-        "Глубокая аналитика и отчетность"
-      ]
-    }
-  ]
-
   const testimonials = [
     {
-      content: "Внедрение ИИ-ассистента от «Вечный ИИ» полностью изменило нашу работу с пациентами. Теперь запись на прием и ответы на частые вопросы происходят автоматически, что значительно разгрузило администраторов. Пациенты довольны скоростью ответов, а мы видим рост числа записавшихся. Это просто незаменимый инструмент!",
-      author: "Анна Смирнова",
-      position: "Главный врач, Многопрофильная клиника «Здоровье Плюс»"
+      content: "«Раньше администратор не успевала всем отвечать. Бот сам предлагает свободные окна, записывает и присылает напоминания — опозданий стало меньше. Раз в неделю приходит понятный отчёт: сколько обращений, сколько записей и из каких каналов. Удобно и без лишних слов.»",
+      author: "Данияр Нурланов",
+      position: "Администратор многопрофильной клиники"
     },
     {
       content: "Наш ИИ-бот стал настоящим спасением! Он принимает заказы, отвечает на вопросы о меню и часах работы, даже помогает с бронированием столиков. Мы заметили, что клиенты стали чаще возвращаться, потому что им удобно общаться с нашим ботом. Спасибо «Вечному ИИ» за такое классное решение!",
-      author: "Дмитрий Иванов",
-      position: "Владелец кафе «Уютный Уголок»"
+      author: "Алия Калиева",
+      position: "Владелица «Цветы у дома»"
     },
     {
-      content: "Мы всегда хотели быть на связи с нашими клиентами 24/7, но это было невозможно. ИИ-ассистент от «Вечный ИИ» решил эту проблему. Теперь наши клиенты могут узнать о наличии цветов, оформить заказ и получить консультацию в любое время. Это привело к увеличению продаж и сделало наш сервис намного лучше.",
-      author: "Елена Петрова",
-      position: "Управляющая, Цветочный магазин «Букет Мечты»"
+      content: "Я в техниках не силён, но подключение заняло один день. Бот принимает заявки из Instagram и WhatsApp, спрашивает марку авто, проблему и предлагает время. В конце недели вижу цифры в отчёте — сколько обращений, сколько записей, откуда пришли. Переписка перестала отвлекать мастеров.",
+      author: "Тимур Аманжолов",
+      position: "Владелец сервиса по ремонту автомобилей"
     }
   ]
 
@@ -210,7 +175,7 @@ function App() {
                 onClick={scrollToForm}
                 className="bg-red-500 hover:bg-red-600 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
-                Оставить заявку
+                Рассчитать стоимость
               </Button>
             </div>
             <div className="animate-fade-in-right">
@@ -285,88 +250,6 @@ function App() {
       </section>
 
       {/* Packages Section */}
-      <section className="py-20 bg-gray-50 w-full">
-        <div className="container mx-auto px-[10px] sm:px-4 lg:px-[40px] max-w-screen-xl w-full">
-          <h2 className="text-3xl lg:text-5xl font-bold text-center text-gray-800 mb-8">Пакеты услуг</h2>
-          <p className="text-lg lg:text-xl text-center text-gray-600 mb-16 max-w-4xl mx-auto">
-            Мы предлагаем гибкие пакеты услуг, которые можно адаптировать под уникальные потребности вашего бизнеса.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {packages.map((pkg, index) => (
-              <Card key={index} className={`p-8 relative w-full max-w-xl mx-auto ${pkg.popular ? 'border-4 border-blue-500 scale-105' : 'hover:shadow-xl'} transition-all duration-300`}>
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-red-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
-                      Популярный
-                    </span>
-                  </div>
-                )}
-                <CardContent className="space-y-6">
-                  <h3 className="text-xl lg:text-2xl font-semibold text-gray-800 text-center">
-                    {pkg.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {pkg.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-3">
-                        <span className="text-blue-600 font-bold mt-1">✓</span>
-                        <span className="text-gray-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Calculator */}
-          <div className="max-w-2xl mx-auto w-full">
-            <Card className="p-8 w-full max-w-full">
-              <CardContent className="space-y-6">
-                <h3 className="text-2xl font-semibold text-center text-gray-800 mb-6">
-                  Калькулятор стоимости
-                </h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Количество каналов:</label>
-                    <Select value={channels} onValueChange={setChannels}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">1 канал</SelectItem>
-                        <SelectItem value="2">2 канала</SelectItem>
-                        <SelectItem value="3">3+ каналов</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Объем запросов в месяц:</label>
-                    <Select value={requests} onValueChange={setRequests}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1000">До 1000</SelectItem>
-                        <SelectItem value="5000">До 5000</SelectItem>
-                        <SelectItem value="unlimited">Безлимитно</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <p className="text-2xl font-semibold text-blue-600">
-                    Ориентировочная стоимость: от {calculatePrice()} ₸
-                  </p>
-                </div>
-                <p className="text-sm text-gray-500 text-center">
-                  Все пакеты могут быть кастомизированы под ваши специфические требования. Свяжитесь с нами для точного коммерческого предложения.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white w-full">
@@ -429,65 +312,7 @@ function App() {
             <p className="text-lg lg:text-xl mb-12 opacity-90">
               Оставьте заявку прямо сейчас, и наши специалисты свяжутся с вами для бесплатной консультации и подбора оптимального решения.
             </p>
-            
-            <Card className="max-w-2xl mx-auto w-full">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Input
-                      placeholder="Ваше имя"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      required
-                      className="text-gray-800"
-                    />
-                    <Input
-                      type="email"
-                      placeholder="Email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      required
-                      className="text-gray-800"
-                    />
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Input
-                      type="tel"
-                      placeholder="Телефон"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      required
-                      className="text-gray-800"
-                    />
-                    <Select value={formData.business} onValueChange={(value) => setFormData({...formData, business: value})}>
-                      <SelectTrigger className="text-gray-800">
-                        <SelectValue placeholder="Выберите сферу бизнеса" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="retail">Розничная торговля</SelectItem>
-                        <SelectItem value="services">Услуги</SelectItem>
-                        <SelectItem value="healthcare">Медицина</SelectItem>
-                        <SelectItem value="education">Образование</SelectItem>
-                        <SelectItem value="other">Другое</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <Textarea
-                    placeholder="Расскажите о ваших задачах и потребностях"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    rows={4}
-                    className="text-gray-800"
-                  />
-                  <Button 
-                    type="submit"
-                    className="w-full bg-red-500 hover:bg-red-600 text-white py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105"
-                  >
-                    Оставить заявку
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            <ClientCalc />
           </div>
         </div>
       </section>
@@ -501,8 +326,9 @@ function App() {
               <p className="text-gray-300">Умные ИИ-ассистенты для вашего бизнеса</p>
             </div>
             <div className="text-right">
-              <p className="text-gray-300 mb-2">Email: info@eternal-ai.ru</p>
-              <p className="text-gray-300">Телефон: +7 (999) 123-45-67</p>
+              <p className="text-gray-300 mb-2">Email: info@eternal-ai.kz</p>
+              <p className="text-gray-300 mb-2"><a href="https://wa.me/77082414865">Телефон: +7 708 241 4865</a></p>
+              <p className="text-gray-300"><a href="https://www.instagram.com/eternal_kz/">Instagram: @eternal_kz</a></p>
             </div>
           </div>
         </div>
@@ -512,6 +338,4 @@ function App() {
 }
 
 export default App
-
-var sheet = SpreadsheetApp.openById('1eKdrlFCor9-e3f4uOuWQwLrr2xZ2PU-2n7oYlj6HdD8').getSheetByName('Лист1');
 
