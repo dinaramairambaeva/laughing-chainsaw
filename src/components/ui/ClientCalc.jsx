@@ -52,29 +52,29 @@ const ClientCalc = () => {
 
     const selectedNetworks = Object.values(socialNetworks).filter(Boolean).length;
     if (selectedNetworks > 0) {
-      totalCost += 250000;
+      totalCost += 200000;
       if (selectedNetworks > 1) totalCost += 100000;
       if (selectedNetworks > 2) totalCost += 50000;
       if (selectedNetworks > 3) totalCost += 50000;
     }
 
-    if (imageProcessing) totalCost += 170000;
+    if (imageProcessing) totalCost += 70000;
     if (googleSheets) totalCost += 50000;
-    if (crmIntegration) totalCost += 120000;
+    if (crmIntegration) totalCost += 70000;
 
     return totalCost;
   };
 
   useEffect(() => {
     const totalCost = calculateDevelopmentCost();
-    if (totalCost >= 500000 && !bonusUnlocked) {
+    if (totalCost >= 400000 && !bonusUnlocked) {
       setBonusUnlocked(true);
       setShowBonusMessage(true);
       const timer = setTimeout(() => {
         setShowBonusMessage(false);
       }, 5000);
       return () => clearTimeout(timer);
-    } else if (totalCost < 500000) {
+    } else if (totalCost < 400000) {
       setBonusUnlocked(false);
       setSalesAnalysis(false);
       setShowBonusMessage(false);
@@ -169,7 +169,7 @@ const ClientCalc = () => {
                 {!bonusUnlocked && (
                     <div className="flex items-center text-gray-500 text-sm mt-3">
                     <AlertTriangle className="w-4 h-4 mr-2 text-yellow-500" />
-                    Для разблокировки бонуса выберите функций на сумму 500 000 ₸ и более.
+                    Для разблокировки бонуса выберите функций на сумму 400 000 ₸ и более.
                     </div>
                 )}
                 </div>
